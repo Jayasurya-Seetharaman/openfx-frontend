@@ -32,9 +32,9 @@ export const useQuote = (): UseQuoteReturn => {
     const updateTimer = () => {
       const remaining = getTimeRemaining(quote.expiresAt);
       setTimeRemaining(remaining);
-      
-      if (remaining <= 0) {
-        setIsExpired(true);
+      // Only update isExpired when not loading, so refresh doesn't get overwritten by the old quote's interval
+      if (!isLoading) {
+        setIsExpired(remaining <= 0);
       }
     };
 
@@ -45,7 +45,7 @@ export const useQuote = (): UseQuoteReturn => {
     const interval = setInterval(updateTimer, 1000);
 
     return () => clearInterval(interval);
-  }, [quote]);
+  }, [quote, isLoading]);
 
   const fetchQuote = useCallback(async (params: QuoteParams) => {
     setIsLoading(true);
