@@ -53,13 +53,13 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Get FX Quote</h1>
+      <div className="bg-white rounded-xl shadow-lg p-6 md:p-7 card-hover">
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Get FX Quote</h1>
 
-        <form onSubmit={handleGetQuote} className="space-y-6">
+        <form onSubmit={handleGetQuote} className="space-y-5">
           {/* Amount Input */}
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="amount" className="block text-sm font-semibold text-gray-700 mb-2">
               Amount
             </label>
             <input
@@ -70,27 +70,27 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
               placeholder="Enter amount"
               step="0.01"
               min="0"
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                amountError ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-3 text-base border-2 rounded-lg input-field focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                amountError ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-gray-400'
               }`}
               disabled={isLoading}
             />
             {amountError && (
-              <p className="mt-1 text-sm text-red-600">{amountError}</p>
+              <p className="mt-1.5 text-sm text-red-600 font-medium">{amountError}</p>
             )}
           </div>
 
           {/* Currency Selection */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="sourceCurrency" className="block text-sm font-medium text-gray-700 mb-2">
-                From
+              <label htmlFor="sourceCurrency" className="block text-sm font-semibold text-gray-700 mb-2">
+                From Currency
               </label>
               <select
                 id="sourceCurrency"
                 value={sourceCurrency}
                 onChange={(e) => setSourceCurrency(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg input-field focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 cursor-pointer"
                 disabled={isLoading}
               >
                 {CURRENCIES.map((curr) => (
@@ -102,14 +102,14 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
             </div>
 
             <div>
-              <label htmlFor="destCurrency" className="block text-sm font-medium text-gray-700 mb-2">
-                To
+              <label htmlFor="destCurrency" className="block text-sm font-semibold text-gray-700 mb-2">
+                To Currency
               </label>
               <select
                 id="destCurrency"
                 value={destCurrency}
                 onChange={(e) => setDestCurrency(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-3 text-base border-2 border-gray-300 rounded-lg input-field focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 cursor-pointer"
                 disabled={isLoading}
               >
                 {CURRENCIES.map((curr) => (
@@ -125,7 +125,7 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
           <button
             type="submit"
             disabled={isLoading || !amount || !!amountError}
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg text-base font-bold hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg btn-primary"
           >
             {isLoading ? (
               <span className="flex items-center justify-center gap-2">
@@ -140,11 +140,11 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
 
         {/* Error Display */}
         {error && (
-          <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="mt-5 bg-red-50 border-2 border-red-200 rounded-lg p-4 shadow-sm">
             <div className="flex items-start">
               <span className="text-red-600 text-xl mr-3">⚠️</span>
               <div>
-                <h3 className="font-semibold text-red-900">Error</h3>
+                <h3 className="font-bold text-red-900">Error</h3>
                 <p className="text-red-700 text-sm mt-1">{error.message}</p>
               </div>
             </div>
@@ -153,34 +153,34 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
 
         {/* Quote Display */}
         {quote && !error && (
-          <div className="mt-6 border-t pt-6">
-            <div className="bg-blue-50 rounded-lg p-6 space-y-4">
-              <h2 className="text-xl font-bold text-gray-900">Your Quote</h2>
+          <div className="mt-6 border-t-2 border-gray-200 pt-5">
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 space-y-4 shadow-md border border-blue-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-3">Your Quote</h2>
 
               <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Exchange Rate</span>
-                  <span className="font-semibold">
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-gray-700 text-sm font-medium">Exchange Rate</span>
+                  <span className="font-bold">
                     1 {quote.sourceCurrency} = {quote.rate.toFixed(4)} {quote.destCurrency}
                   </span>
                 </div>
 
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Amount</span>
-                  <span className="font-semibold">
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-gray-700 text-sm font-medium">Amount</span>
+                  <span className="font-bold">
                     {formatCurrency(quote.sourceAmount, quote.sourceCurrency)}
                   </span>
                 </div>
 
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Fees</span>
-                  <span className="font-semibold">
+                <div className="flex justify-between items-center py-1">
+                  <span className="text-gray-700 text-sm font-medium">Fees</span>
+                  <span className="font-bold">
                     {formatCurrency(quote.fees, quote.sourceCurrency)}
                   </span>
                 </div>
 
-                <div className="border-t border-blue-200 pt-3">
-                  <div className="flex justify-between">
+                <div className="border-t-2 border-blue-200 pt-3 mt-2">
+                  <div className="flex justify-between items-center">
                     <span className="text-gray-900 font-bold">Total Payable</span>
                     <span className="text-xl font-bold text-blue-600">
                       {formatCurrency(quote.totalPayable, quote.sourceCurrency)}
@@ -188,16 +188,18 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
                   </div>
                 </div>
 
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">You'll receive approximately</span>
-                  <span className="font-semibold text-green-600">
-                    {formatCurrency(quote.sourceAmount * quote.rate, quote.destCurrency)}
-                  </span>
+                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-3 mt-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700 text-sm font-medium">Recipient receives</span>
+                    <span className="font-bold text-lg text-green-700">
+                      {formatCurrency(quote.sourceAmount * quote.rate, quote.destCurrency)}
+                    </span>
+                  </div>
                 </div>
               </div>
 
               {/* Timer */}
-              <div className="mt-6">
+              <div className="mt-5">
                 <CountdownTimer
                   timeRemaining={timeRemaining}
                   totalTime={30}
@@ -206,20 +208,20 @@ export const QuoteScreen = ({ onContinue }: QuoteScreenProps) => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 mt-6">
+              <div className="flex gap-3 mt-5">
                 {isExpired ? (
                   <button
                     onClick={refreshQuote}
-                    className="flex-1 bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-700 transition-colors"
+                    className="flex-1 bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3 px-6 rounded-lg text-base font-bold hover:from-orange-700 hover:to-orange-800 shadow-md hover:shadow-lg btn-primary"
                   >
                     Refresh Quote
                   </button>
                 ) : (
                   <button
                     onClick={handleContinue}
-                    className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-6 rounded-lg text-base font-bold hover:from-green-700 hover:to-green-800 shadow-md hover:shadow-lg btn-primary"
                   >
-                    Continue to Payment
+                    Continue to Payment →
                   </button>
                 )}
               </div>

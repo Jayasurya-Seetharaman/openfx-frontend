@@ -27,60 +27,60 @@ export const ConfirmPayScreen = ({ quote, onPaymentSuccess, onBack }: ConfirmPay
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Confirm & Pay</h1>
+      <div className="bg-white rounded-xl shadow-lg p-6 md:p-7 card-hover">
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Confirm & Pay</h1>
 
         {/* Quote Summary */}
-        <div className="bg-gray-50 rounded-lg p-6 space-y-4 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900">Transaction Summary</h2>
+        <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-5 space-y-3 mb-6 border-2 border-gray-200 shadow-sm">
+          <h2 className="text-lg font-bold text-gray-900 mb-3">Transaction Summary</h2>
 
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-600">From</span>
-              <span className="font-semibold">{quote.sourceCurrency}</span>
+          <div className="space-y-2.5">
+            <div className="flex justify-between items-center py-1">
+              <span className="text-gray-700 text-sm font-medium">From Currency</span>
+              <span className="font-bold">{quote.sourceCurrency}</span>
             </div>
 
-            <div className="flex justify-between">
-              <span className="text-gray-600">To</span>
-              <span className="font-semibold">{quote.destCurrency}</span>
+            <div className="flex justify-between items-center py-1">
+              <span className="text-gray-700 text-sm font-medium">To Currency</span>
+              <span className="font-bold">{quote.destCurrency}</span>
             </div>
 
-            <div className="flex justify-between">
-              <span className="text-gray-600">Exchange Rate</span>
-              <span className="font-semibold">
+            <div className="flex justify-between items-center py-1">
+              <span className="text-gray-700 text-sm font-medium">Exchange Rate</span>
+              <span className="font-bold">
                 1 {quote.sourceCurrency} = {quote.rate.toFixed(4)} {quote.destCurrency}
               </span>
             </div>
 
-            <div className="border-t border-gray-200 pt-3">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Amount</span>
-                <span className="font-semibold">
+            <div className="border-t-2 border-gray-300 pt-2.5 mt-2">
+              <div className="flex justify-between items-center py-1">
+                <span className="text-gray-700 text-sm font-medium">Amount</span>
+                <span className="font-bold">
                   {formatCurrency(quote.sourceAmount, quote.sourceCurrency)}
                 </span>
               </div>
             </div>
 
-            <div className="flex justify-between">
-              <span className="text-gray-600">Fees</span>
-              <span className="font-semibold">
+            <div className="flex justify-between items-center py-1">
+              <span className="text-gray-700 text-sm font-medium">Fees</span>
+              <span className="font-bold">
                 {formatCurrency(quote.fees, quote.sourceCurrency)}
               </span>
             </div>
 
-            <div className="border-t border-gray-300 pt-3">
-              <div className="flex justify-between">
-                <span className="text-gray-900 font-bold text-lg">Total Payable</span>
-                <span className="text-xl font-bold text-blue-600">
+            <div className="border-t-2 border-gray-400 pt-3 mt-2 bg-white rounded-lg p-3 shadow-sm">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-900 font-bold">Total Payable</span>
+                <span className="text-2xl font-bold text-blue-600">
                   {formatCurrency(quote.totalPayable, quote.sourceCurrency)}
                 </span>
               </div>
             </div>
 
-            <div className="bg-green-50 border border-green-200 rounded p-3 mt-4">
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-lg p-3 mt-2 shadow-sm">
               <div className="flex justify-between items-center">
-                <span className="text-gray-700 text-sm">Recipient will receive</span>
-                <span className="font-bold text-green-700">
+                <span className="text-gray-800 font-semibold text-sm">Recipient will receive</span>
+                <span className="font-bold text-lg text-green-700">
                   {formatCurrency(quote.sourceAmount * quote.rate, quote.destCurrency)}
                 </span>
               </div>
@@ -89,16 +89,16 @@ export const ConfirmPayScreen = ({ quote, onPaymentSuccess, onBack }: ConfirmPay
         </div>
 
         {/* Confirmation Checkbox */}
-        <div className="mb-6">
-          <label className="flex items-start gap-3 cursor-pointer">
+        <div className="mb-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+          <label className="flex items-start gap-3 cursor-pointer group">
             <input
               type="checkbox"
               checked={confirmed}
               onChange={(e) => setConfirmed(e.target.checked)}
               disabled={isSubmitting}
-              className="mt-1 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+              className="mt-0.5 w-5 h-5 text-blue-600 border-gray-400 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer"
             />
-            <span className="text-sm text-gray-700">
+            <span className="text-sm text-gray-800 font-medium leading-relaxed group-hover:text-gray-900">
               I confirm the transaction details are correct and authorize OpenFX to process this payment.
             </span>
           </label>
@@ -106,31 +106,31 @@ export const ConfirmPayScreen = ({ quote, onPaymentSuccess, onBack }: ConfirmPay
 
         {/* Error Display */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="mb-6 bg-red-50 border-2 border-red-300 rounded-lg p-4 shadow-sm">
             <div className="flex items-start">
               <span className="text-red-600 text-xl mr-3">⚠️</span>
               <div className="flex-1">
-                <h3 className="font-semibold text-red-900">Payment Failed</h3>
-                <p className="text-red-700 text-sm mt-1">{error.message}</p>
+                <h3 className="font-bold text-red-900">Payment Failed</h3>
+                <p className="text-red-700 mt-1 text-sm">{error.message}</p>
               </div>
             </div>
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           <button
             onClick={onBack}
             disabled={isSubmitting}
-            className="flex-1 bg-gray-200 text-gray-800 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 bg-gray-200 text-gray-800 py-3 px-6 rounded-lg text-base font-bold hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md btn-secondary"
           >
-            Back
+            ← Back
           </button>
 
           <button
             onClick={handlePay}
             disabled={!confirmed || isSubmitting}
-            className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-6 rounded-lg text-base font-bold hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg btn-primary"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
@@ -144,8 +144,10 @@ export const ConfirmPayScreen = ({ quote, onPaymentSuccess, onBack }: ConfirmPay
         </div>
 
         {/* Security Note */}
-        <div className="mt-6 text-center text-sm text-gray-500">
-          <p>🔒 Your payment is secure and encrypted</p>
+        <div className="mt-5 text-center">
+          <div className="inline-block bg-green-50 border-2 border-green-200 rounded-lg px-4 py-2">
+            <p className="text-sm text-green-800 font-semibold">🔒 Your payment is secure and encrypted</p>
+          </div>
         </div>
       </div>
     </div>
