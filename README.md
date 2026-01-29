@@ -68,3 +68,20 @@ Async flows use try/catch, errors are stored in state and shown in the UI with c
 ✅ Loading states  
 ✅ Responsive design  
 ✅ TypeScript type safety
+
+## Screenshots
+Initial Screen
+<img width="1439" height="706" alt="Screenshot 2026-01-29 at 10 04 06 AM" src="https://github.com/user-attachments/assets/80eff25f-d904-478e-b27b-f0f831e230da" />
+
+Quote Screen
+<img width="1439" height="706" alt="Screenshot 2026-01-29 at 10 04 29 AM" src="https://github.com/user-attachments/assets/5acc80c1-90c8-4bc7-a2a9-faa2c2396251" />
+
+Confirm & Pay Screen
+<img width="1439" height="706" alt="Screenshot 2026-01-29 at 10 04 57 AM" src="https://github.com/user-attachments/assets/0f1f56e1-b827-4374-a34f-9364bda6a2bc" />
+
+Failed Transaction Screen
+<img width="1439" height="708" alt="Screenshot 2026-01-29 at 10 05 29 AM" src="https://github.com/user-attachments/assets/677fe763-6f0a-4387-afd4-8cad3eb48f19" />
+
+Success Transaction
+<img width="1439" height="708" alt="Screenshot 2026-01-29 at 10 06 11 AM" src="https://github.com/user-attachments/assets/a2a33ee7-1e4e-4036-b2cb-866f2a8546ea" />
+
